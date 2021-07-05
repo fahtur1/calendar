@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('plugins') }}/fullcalendar/main.css">
+<link rel="stylesheet" href="{{ asset('plugins') }}/sweetalert2/sweetalert2.min.css">
 @endsection
 
 @section('button')
@@ -35,7 +36,8 @@
 
 @push('js')
 <script src="{{ asset('plugins') }}/fullcalendar/main.min.js"></script>
-{{-- <script src="{{ asset('dist') }}/js/pages/calendar.js"></script> --}}
+<script src="{{ asset('plugins') }}/sweetalert2/sweetalert2.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         $.ajaxSetup({
@@ -64,6 +66,44 @@
             , themeSystem: 'bootstrap'
             , events: {
                 url: `{{ route('calendar.ajax') }}`
+            }
+            , eventClick: async (e) => {
+                const id = e.event._def.extendedProps.id_event
+
+                let result = await Swal.fire({
+                    title: 'Choose !'
+                    , text: "Apa yang ingin anda lakukan ?"
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Edit'
+                    , cancelButtonText: 'Delete'
+                });
+
+                if (result.isConfirmed) {
+                    let url = "{{ route('edit.schedule', ':id') }}";
+                    url = url.replace(':id', id);
+
+                    window.location.href = url;
+                } else if (result.isDismissed && result.dismiss === 'cancel') {
+                    const deleteSwal = await Swal.fire({
+                        title: 'Are you sure?'
+                        , text: "You won't be able to revert this!"
+                        , icon: 'warning'
+                        , showCancelButton: true
+                        , confirmButtonColor: '#d33'
+                        , cancelButtonColor: '#3085d6'
+                        , confirmButtonText: 'Yes, delete it!'
+                    });
+
+                    if (deleteSwal.isConfirmed) {
+                        let url = "{{ route('delete.schedule', ':id') }}";
+                        url = url.replace(':id', id);
+
+                        window.location.href = url;
+                    }
+                }
             }
         });
 

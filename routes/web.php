@@ -25,4 +25,9 @@ Route::prefix('/calendar')->group(function () {
 
     Route::get('/add_schedule', [CalendarController::class, 'showAddSchedule'])->name('calendar.add_schedule');
     Route::post('/add_schedule', [CalendarController::class, 'postAddSchedule'])->name('calendar.add_schedule.post');
+
+    Route::get('/edit_schedule/{id}', [CalendarController::class, 'showEditSchedule'])->name('edit.schedule');
+    Route::post('/edit_schedule/{id}', [CalendarController::class, 'postEditSchedule'])->name('edit.schedule.post');
+
+    Route::get('/delete_schedule/{id}', [CalendarController::class, 'deleteSchedule'])->name('delete.schedule');
 });

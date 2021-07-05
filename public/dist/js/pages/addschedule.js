@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     $('#jamStart').datetimepicker({
-        format: 'HH:mm'
+        format: 'HH:mm',
+        maxDate: moment().hours(17)
     });
 
     $('#jamEnd').datetimepicker({
-        format: 'HH:mm'
+        format: 'HH:mm',
+        maxDate: moment().hours(17)
     });
 
     $('#tanggal1').on("change.datetimepicker", function (e) {
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#jamStart').datetimepicker('date', e.date);
             $('#jamStart').datetimepicker('minDate', e.date);
         } else {
-            $('#jamStart').datetimepicker('minDate', false);
+            $('#jamStart').datetimepicker('minDate', moment().hours(7));
         }
     });
 
