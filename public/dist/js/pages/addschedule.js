@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#jamStart').datetimepicker({
         format: 'HH:mm',
-        maxDate: moment().hours(17)
     });
 
     $('#jamEnd').datetimepicker({
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#jamEnd2').datetimepicker({
         format: 'HH:mm',
-        maxDate: moment().hours(17)
     });
 
     $('#tanggal1').on("change.datetimepicker", function (e) {

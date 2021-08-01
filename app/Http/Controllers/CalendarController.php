@@ -39,8 +39,10 @@ class CalendarController extends Controller
             'id' => $event->id_event,
             'title' => $event->title,
             'tanggal' => date('d-m-Y', $tanggalMulai),
+            'tanggal2' => date('d-m-Y', $tanggalSelesai),
             'start' => date('H:i', $tanggalMulai),
             'end' => date('H:i', $tanggalSelesai),
+            'description' => $event->description,
             'isChecked' => (date('H', $tanggalMulai) == '00') ? true : false
         ];
 
@@ -73,6 +75,7 @@ class CalendarController extends Controller
         $checkbox = $request->post('oneday');
         $titleEvent = $request->post('event');
         $baseDate = $request->post('tanggal') . ' ';
+        $description = $request->post('description');
 
         $dateStart = '';
         $dateEnd = '';
@@ -81,7 +84,7 @@ class CalendarController extends Controller
             $dateStart = date_create($baseDate . '00:00');
             $dateEnd = date_create($baseDate . '23:59');
         } else {
-            $tanggalKedua = $request->post('tanggal2');
+            $tanggalKedua = $request->post('tanggal2') . ' ';
 
             $jamKeduaStart = $request->post('jam_start');
             $jamKeduaEnd = $request->post('jam_end');
@@ -94,7 +97,8 @@ class CalendarController extends Controller
             'id_event' => uniqid('evnt-'),
             'title' => $titleEvent,
             'start' => $dateStart,
-            'end' => $dateEnd
+            'end' => $dateEnd,
+            'description' => $description
         ]);
 
         if ($status) {
@@ -118,6 +122,7 @@ class CalendarController extends Controller
         $checkbox = $request->post('oneday');
         $titleEvent = $request->post('event');
         $baseDate = $request->post('tanggal') . ' ';
+        $description = $request->post('description');
 
         $dateStart = '';
         $dateEnd = '';
@@ -126,8 +131,13 @@ class CalendarController extends Controller
             $dateStart = date_create($baseDate . '00:00');
             $dateEnd = date_create($baseDate . '23:59');
         } else {
-            $dateStart = date_create($baseDate . $request->post('jam_start'));
-            $dateEnd = date_create($baseDate . $request->post('jam_end'));
+            $tanggalKedua = $request->post('tanggal2') . ' ';
+
+            $jamKeduaStart = $request->post('jam_start');
+            $jamKeduaEnd = $request->post('jam_end');
+
+            $dateStart = date_create($baseDate . $jamKeduaStart);
+            $dateEnd = date_create($tanggalKedua . $jamKeduaEnd);
         }
 
 
@@ -136,7 +146,8 @@ class CalendarController extends Controller
         $status = $event->update([
             'title' => $titleEvent,
             'start' => $dateStart,
-            'end' => $dateEnd
+            'end' => $dateEnd,
+            'description' => $description
         ]);
 
         if ($status) {

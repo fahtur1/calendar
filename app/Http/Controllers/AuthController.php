@@ -13,11 +13,17 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        $login = Auth::attempt(['username' => $request->post('username'), 'password' => $request->post('pass')]);
+        $login = Auth::attempt([
+            'username' => $request->post('username'),
+            'password' => $request->post('pass')
+        ]);
+
         if ($login) {
             return redirect()->route('calendar');
         } else {
-            echo "User tidak ada";
+            return back()
+                ->with('message', 'Username atau Password salah')
+                ->with('class', 'danger');
         }
     }
     public function logout()

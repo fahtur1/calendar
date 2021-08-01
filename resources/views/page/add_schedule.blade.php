@@ -122,7 +122,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Keterangan</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="" style="resize: none;"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,7 @@ class Event extends Model
         'id_event',
         'title',
         'start',
-        'end'
+        'end',
+        'description'
     ];
 }

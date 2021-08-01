@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('dist') }}/css/adminlte.min.css">
     <!-- Full calendar -->
     <link rel="stylesheet" href="{{ asset('plugins') }}/fullcalendar/main.css">
+    <!-- Sweet Alert CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins') }}/sweetalert2/sweetalert2.min.css">
 
 </head>
 
@@ -28,11 +30,6 @@
         </div>
     </section>
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e28f39601a032286217fcfec806c933a0cc9a826
     <script src="{{ asset('plugins') }}/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('plugins') }}/jquery-ui/jquery-ui.min.js"></script>
@@ -41,6 +38,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('dist') }}/js/adminlte.js"></script>
     <script src="{{ asset('plugins') }}/fullcalendar/main.min.js"></script>
+    <script src="{{ asset('plugins') }}/sweetalert2/sweetalert2.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             $.ajaxSetup({
@@ -51,30 +49,38 @@
 
             const calendarElmt = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarElmt, {
-                initialView: 'timeGridWeek',
                 headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                slotLabelFormat: {
-                    minute: '2-digit',
-                    hour: '2-digit',
-                    hour12: false
-                },
-                slotMinTime: '07:00:00',
-                slotMaxTime: '17:00:00',
-                nowIndicator: true,
-                allDaySlot: false,
-                height: 700,
-                themeSystem: 'bootstrap',
-                events: {
+                    left: 'prev,next today'
+                    , center: 'title'
+                    , right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                }
+                , slotLabelFormat: {
+                    minute: '2-digit'
+                    , hour: '2-digit'
+                    , hour12: false
+                }
+                , slotMinTime: '07:00:00'
+                , slotMaxTime: '17:00:00'
+                , nowIndicator: true
+                , allDaySlot: false
+                , height: 700
+                , themeSystem: 'bootstrap'
+                , events: {
                     url: `{{ route('calendar.ajax') }}`
+                }
+                , eventClick: async (e) => {
+                    const description = e.event._def.extendedProps.description;
+
+                    Swal.fire(
+                        'Description'
+                        , `${description}`
+                    );
                 }
             });
 
             calendar.render();
         });
+
     </script>
 </body>
 

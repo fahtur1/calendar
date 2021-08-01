@@ -21,10 +21,11 @@ Route::get('/', function () {
     return view('page.user')->with('title', 'Calendar');
 });
 
+Route::get('/get_calendar', [CalendarController::class, 'getAllCalendar'])->name('calendar.ajax');
+
 Route::prefix('/calendar')->middleware('auth:web')->group(function () {
 
     Route::get('/', [CalendarController::class, 'show'])->name('calendar');
-    Route::get('/get_calendar', [CalendarController::class, 'getAllCalendar'])->name('calendar.ajax');
 
     Route::get('/add_schedule', [CalendarController::class, 'showAddSchedule'])->name('calendar.add_schedule');
     Route::post('/add_schedule', [CalendarController::class, 'postAddSchedule'])->name('calendar.add_schedule.post');

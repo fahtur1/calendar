@@ -49,12 +49,12 @@
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkOneDay" name="oneday" {{ $event['isChecked'] ? 'checked' : '' }}>
-                                <label class="form-check-label" for="exampleCheck1">Satu Hari Penuh</label>
+                                <label class="form-check-label" for="exampleCheck1">Satu Hari</label>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-3" id="inputJam">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Start</label>
                                 <div class="input-group date" id="jamStart" data-target-input="nearest">
@@ -65,15 +65,64 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">End</label>
                                 <div class="input-group date" id="jamEnd" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#jamEnd" name="jam_end" value="{{ $event['end'] }}" />
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#jamEnd" name="jam_end" />
                                     <div class="input-group-append" data-target="#jamEnd" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div id="inputTanggalKedua">
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tanggal</label>
+                                    <div class="input-group date" id="tanggal2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#tanggal2" name="tanggal2" value="{{ $event['tanggal2'] }}"/>
+                                        <div class="input-group-append" data-target="#tanggal2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3" id="inputJam">
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Start</label>
+                                    <div class="input-group date" id="jamStart2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#jamStart2" name="jam_start2" />
+                                        <div class="input-group-append" data-target="#jamStart2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">End</label>
+                                    <div class="input-group date" id="jamEnd2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#jamEnd2" name="jam_end" value="{{ $event['end'] }}" />
+                                        <div class="input-group-append" data-target="#jamEnd2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Keterangan</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" style="resize: none;">{{ $event['description'] }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -91,55 +140,9 @@
 @push('js')
 <script src="{{ asset('plugins') }}/moment/moment.min.js"></script>
 <script src="{{ asset('plugins') }}/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{ asset('dist') }}/js/pages/editschedule.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-        const checkOneDay = document.getElementById('checkOneDay');
-        const rowJam = document.getElementById('inputJam');
-
-        if (checkOneDay.checked) {
-            rowJam.style.display = 'none';
-        }
-
-        // * Toogle Input Jam
-        checkOneDay.addEventListener('change', (e) => {
-            const status = e.target.checked;
-
-            if (status) {
-                rowJam.style.display = 'none';
-            } else {
-                rowJam.style.display = 'flex';
-            }
-        });
-
-        $('#tanggal1').datetimepicker({
-            format: 'DD-MM-YYYY'
-        });
-
-        $('#jamStart').datetimepicker({
-            format: 'HH:mm'
-        });
-
-        $('#jamEnd').datetimepicker({
-            format: 'HH:mm'
-        });
-
-        $('#tanggal1').on("change.datetimepicker", function(e) {
-            const today = new Date();
-
-            if (e.date.isSame(today, "day")) {
-                $('#jamStart').datetimepicker('date', e.date);
-                $('#jamStart').datetimepicker('minDate', e.date);
-            } else {
-                $('#jamStart').datetimepicker('minDate', moment().hours(7));
-            }
-        });
-
-        $('#jamStart').on('change.datetimepicker', function(e) {
-            $('#jamEnd').datetimepicker('minDate', e.date);
-        });
-
-    });
 
 </script>
 @endpush

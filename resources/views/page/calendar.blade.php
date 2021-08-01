@@ -68,11 +68,12 @@
                 url: `{{ route('calendar.ajax') }}`
             }
             , eventClick: async (e) => {
-                const id = e.event._def.extendedProps.id_event
+                const id = e.event._def.extendedProps.id_event;
+                const description = e.event._def.extendedProps.description;
 
                 let result = await Swal.fire({
                     title: 'Choose !'
-                    , text: "Apa yang ingin anda lakukan ?"
+                    , text: `Keterangan : ${description}`
                     , icon: 'warning'
                     , showCancelButton: true
                     , confirmButtonColor: '#3085d6'

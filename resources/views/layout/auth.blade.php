@@ -34,9 +34,19 @@
 
                 <form method="post" action="{{route('auth')}}" class="login100-form validate-form">
                     @csrf
+
                     <span class="login100-form-title">
                         Login
                     </span>
+
+                    @if(session('message'))
+                    <div class="alert alert-{{ session('class') }} alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="username" placeholder="Username">
@@ -60,8 +70,6 @@
                         </button>
                     </div>
 
-
-
                     <div class="text-center p-t-136">
                         <a class="txt2" href="#">
                         </a>
@@ -70,9 +78,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <!--===============================================================================================-->
     <script src="{{asset('login/')}}/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -87,6 +92,7 @@
         $('.js-tilt').tilt({
             scale: 1.1
         })
+
     </script>
     <!--===============================================================================================-->
     <script src="{{asset('login/')}}/js/main.js"></script>
