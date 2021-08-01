@@ -49,12 +49,12 @@
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="checkOneDay" name="oneday">
-                                <label class="form-check-label" for="exampleCheck1">Satu Hari Penuh</label>
+                                <label class="form-check-label" for="exampleCheck1">Satu Hari</label>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-3" id="inputJam">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Start</label>
                                 <div class="input-group date" id="jamStart" data-target-input="nearest">
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">End</label>
                                 <div class="input-group date" id="jamEnd" data-target-input="nearest">
@@ -74,6 +74,55 @@
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div id="inputTanggalKedua">
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tanggal</label>
+                                    <div class="input-group date" id="tanggal2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#tanggal2" name="tanggal2" />
+                                        <div class="input-group-append" data-target="#tanggal2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3" id="inputJam">
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Start</label>
+                                    <div class="input-group date" id="jamStart2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#jamStart2" name="jam_start2" />
+                                        <div class="input-group-append" data-target="#jamStart2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">End</label>
+                                    <div class="input-group date" id="jamEnd2" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#jamEnd2" name="jam_end" />
+                                        <div class="input-group-append" data-target="#jamEnd2" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Keterangan</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="" style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>

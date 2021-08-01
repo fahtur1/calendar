@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('page.user')
-        ->with('title', 'Calendar');
+    return view('page.user')->with('title', 'Calendar');
 });
 
-Route::prefix('/calendar')->group(function () {
+Route::prefix('/calendar')->middleware('auth:web')->group(function () {
 
     Route::get('/', [CalendarController::class, 'show'])->name('calendar');
     Route::get('/get_calendar', [CalendarController::class, 'getAllCalendar'])->name('calendar.ajax');
@@ -32,3 +34,14 @@ Route::prefix('/calendar')->group(function () {
 
     Route::get('/delete_schedule/{id}', [CalendarController::class, 'deleteSchedule'])->name('delete.schedule');
 });
+
+Route::get('/auth', [AuthController::class, 'show']);
+
+Route::post('/auth', [AuthController::class, 'login'])->name('auth');;
+
+Route::get('/password/{pass}', function ($password) {
+    return
+        password_hash($password, PASSWORD_DEFAULT);
+});
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

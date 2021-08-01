@@ -81,8 +81,13 @@ class CalendarController extends Controller
             $dateStart = date_create($baseDate . '00:00');
             $dateEnd = date_create($baseDate . '23:59');
         } else {
-            $dateStart = date_create($baseDate . $request->post('jam_start'));
-            $dateEnd = date_create($baseDate . $request->post('jam_end'));
+            $tanggalKedua = $request->post('tanggal2');
+
+            $jamKeduaStart = $request->post('jam_start');
+            $jamKeduaEnd = $request->post('jam_end');
+
+            $dateStart = date_create($baseDate . $jamKeduaStart);
+            $dateEnd = date_create($tanggalKedua . $jamKeduaEnd);
         }
 
         $status = Event::create([

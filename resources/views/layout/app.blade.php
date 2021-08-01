@@ -59,7 +59,7 @@
                         <img src="{{ asset('dist') }}/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{auth()->user()->username}}</a>
                     </div>
                 </div>
 
@@ -82,9 +82,18 @@
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link active">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="fas fa-calendar-alt"></i>
                                 <p>
                                     Calendar
+                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('logout')}}" class="nav-link ">
+                                <i class="fas fa-power-off"></i>
+                                <p>
+                                    Logout
                                     {{-- <span class="right badge badge-danger">New</span> --}}
                                 </p>
                             </a>

@@ -28,6 +28,11 @@
         </div>
     </section>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e28f39601a032286217fcfec806c933a0cc9a826
     <script src="{{ asset('plugins') }}/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('plugins') }}/jquery-ui/jquery-ui.min.js"></script>
@@ -46,31 +51,30 @@
 
             const calendarElmt = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarElmt, {
-                initialView: 'timeGridWeek'
-                , headerToolbar: {
-                    left: 'prev,next today'
-                    , center: 'title'
-                    , right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                }
-                , slotLabelFormat: {
-                    minute: '2-digit'
-                    , hour: '2-digit'
-                    , hour12: false
-                }
-                , slotMinTime: '07:00:00'
-                , slotMaxTime: '17:00:00'
-                , nowIndicator: true
-                , allDaySlot: false
-                , height: 700
-                , themeSystem: 'bootstrap'
-                , events: {
+                initialView: 'timeGridWeek',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                slotLabelFormat: {
+                    minute: '2-digit',
+                    hour: '2-digit',
+                    hour12: false
+                },
+                slotMinTime: '07:00:00',
+                slotMaxTime: '17:00:00',
+                nowIndicator: true,
+                allDaySlot: false,
+                height: 700,
+                themeSystem: 'bootstrap',
+                events: {
                     url: `{{ route('calendar.ajax') }}`
                 }
             });
 
             calendar.render();
         });
-
     </script>
 </body>
 
